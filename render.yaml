@@ -2,31 +2,19 @@ services:
   - type: web
     name: azuracast
     env: docker
-    plan: standard
+    plan: starter  # or use standard / pro depending on your needs
+    region: frankfurt  # or oregon, singapore, etc.
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: AZURACAST_HTTP_PORT
+        value: 80
+      - key: AZURACAST_HTTPS_PORT
+        value: 443
+      - key: MYSQL_RANDOM_ROOT_PASSWORD
+        value: 'yes'
+      - key: AZURACAST_ENV
+        value: production
     disk:
-      name: azuracast-data
+      name: azuracast_data
       mountPath: /var/azuracast
       sizeGB: 20
-    envVars:
-      - key: APPLICATION_ENV
-        value: production
-      - key: ENABLE_REDIS
-        value: true
-      - key: ENABLE_WEB_UPDATER
-        value: true
-      - key: NGINX_RADIO_PORTS
-        value: default
-      - key: MYSQL_HOST
-        value: localhost
-      - key: MYSQL_USER
-        value: azuracast
-      - key: MYSQL_PASSWORD
-        value: azur4c457
-      - key: MYSQL_DATABASE
-        value: azuracast
-      - key: ENABLE_REVERSE_PROXY
-        value: true
-    autoDeploy: true
-    buildCommand: ""
-    startCommand: |
-      supervisord -c /etc/supervisor/supervisord.conf
