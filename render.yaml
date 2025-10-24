@@ -2,7 +2,7 @@ services:
   - type: web
     name: azuracast
     env: docker
-    plan: starter  # or use standard / pro depending on your needs
+    plan: free  # or use standard / pro depending on your needs
     region: frankfurt  # or oregon, singapore, etc.
     dockerfilePath: ./Dockerfile
     envVars:
