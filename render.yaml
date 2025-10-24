@@ -24,6 +24,8 @@ services:
         value: azur4c457
       - key: MYSQL_DATABASE
         value: azuracast
+      - key: ENABLE_REVERSE_PROXY
+        value: true
     autoDeploy: true
     buildCommand: ""
     startCommand: |
